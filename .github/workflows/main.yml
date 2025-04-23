@@ -20,7 +20,7 @@ jobs:
     - name: unzip llvm
       uses: developerdino/action-tar@v1
       with:
-        args: tar -xzf  clang.tar.xz
+        args: tar -xvf  clang.tar.xz
         
     - name: download zig
       uses: wei/wget@v1
