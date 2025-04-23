@@ -8,6 +8,8 @@
     <Description>MSBuild targets to aid in crosscompiling Native AOT publishing.</Description>
     <PackageProjectUrl>https://github.com/OpenHarmony.NET/PublishAotCross.Compiler</PackageProjectUrl>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+   <PackageCompressionLevel>maximum</PackageCompressionLevel>
+
   </PropertyGroup>
 
   <ItemGroup>
