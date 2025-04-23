@@ -26,3 +26,10 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O zig.zip https://ziglang.org/builds/zig-windows-x86_64-0.15.0-dev.379+ffd85ffcd.zip
+    - name: unzip zig
+      uses: somaz94/compress-decompress@v1
+      with:
+        command: decompress
+        source: ./zig.zip
+        format: zip
+        dest: './zig'
