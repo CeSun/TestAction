@@ -1,0 +1,2 @@
+  <!-- Only Windows host targeting Linux is currently supported -->
+  <Import Project="SetupCompiler.win-x64.targets" Condition="$(RuntimeIdentifier.Contains('linux')) and $([MSBuild]::IsOSPlatform('Windows'))" />

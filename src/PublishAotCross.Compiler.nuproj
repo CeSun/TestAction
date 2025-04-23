@@ -17,5 +17,14 @@
       <BuildAction>None</BuildAction>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    
+		<None Include="PublishAotCross.Compiler.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</None>
+		<None Include="SetupCompiler.win-x64.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</None>
   </ItemGroup>
 </Project>
