@@ -16,7 +16,11 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O clang.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/clang+llvm-20.1.0-x86_64-pc-windows-msvc.tar.xz
-
+    
+    - name: unzip llvm
+      uses: developerdino/action-tar@v1
+      with:
+        args: tar -xzf  clang.tar.xz
         
     - name: download zig
       uses: wei/wget@v1
