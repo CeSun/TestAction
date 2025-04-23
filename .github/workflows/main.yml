@@ -33,21 +33,7 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O zig.zip https://ziglang.org/builds/zig-windows-x86_64-0.15.0-dev.379+ffd85ffcd.zip
-    - name: delete files
-      run: |
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/tsan
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libcxxabi
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libcxx
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/darwin
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/glibc
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/include
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/mingw
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/wasi
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/libc/include
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/wasi
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/fuzzer
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/docs
-        rm -rf ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/lib/doc
+        
     - name: unzip zig
       uses: somaz94/compress-decompress@v1
       with:
@@ -55,6 +41,21 @@ jobs:
         source: ./zig.zip
         format: zip
         dest: './zig'
+    - name: delete files
+      run: |
+        rm -rf ./zig/lib/tsan
+        rm -rf ./zig/lib/libcxxabi
+        rm -rf ./zig/lib/libcxx
+        rm -rf ./zig/lib/libc/darwin
+        rm -rf ./zig/lib/libc/glibc
+        rm -rf ./zig/lib/libc/include
+        rm -rf ./zig/lib/libc/mingw
+        rm -rf ./zig/lib/libc/wasi
+        rm -rf ./zig/lib/libc/include
+        rm -rf ./zig/lib/wasi
+        rm -rf ./zig/lib/fuzzer
+        rm -rf ./zig/lib/docs
+        rm -rf ./zig/lib/doc
     - name: cp win-x64 bin files
       run: |
         mkdir -p ./src/bin/win-x64
