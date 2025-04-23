@@ -54,7 +54,7 @@ jobs:
         name: packages
         path: packages
 
-    publish-to-nuget:
+  publish-to-nuget:
       needs: build
       runs-on: ubuntu-latest
       if: github.event_name == 'push'
