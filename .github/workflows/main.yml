@@ -48,7 +48,7 @@ jobs:
       run: |
         mkdir -p ./src/bin/win-x64
         cp -r ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/bin/llvm-objcopy.exe ./src/bin/win-x64/llvm-objcopy.exe
-        cp -r ./zig/clang+llvm-20.1.0-x86_64-pc-windows-msvc/* ./src/bin/win-x64
+        cp -r ./zig/zig-windows-x86_64-0.15.0-dev.379+ffd85ffcd/* ./src/bin/win-x64
         rm -rf ./src/bin/win-x64/lib/tsan
         rm -rf ./src/bin/win-x64/lib/libcxxabi
         rm -rf ./src/bin/win-x64/lib/libcxx
