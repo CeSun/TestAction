@@ -14,11 +14,10 @@
 
   <ItemGroup>
     <!-- 包含 bin 目录下的所有文件并保留目录结构 -->
-    <Content Include="bin\**\*">
+    <None Include="bin\**\*">
       <Pack>true</Pack>
-      <BuildAction>None</BuildAction>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+      <PackagePath>bin\%(RecursiveDir)</PackagePath>
+    </None>
     
 		<None Include="PublishAotCross.Compiler.targets">
 			<Pack>true</Pack>
