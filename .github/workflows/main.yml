@@ -28,8 +28,7 @@ jobs:
     - name: unzip llvm
       uses: developerdino/action-tar@v1
       with:
-        args: tar -xvf  clang.tar.xz ./clang
-    - name: 
+        args: tar -xvf  clang.tar.xz
     - name: download zig
       uses: wei/wget@v1
       with:
@@ -54,7 +53,7 @@ jobs:
         name: packages
         path: packages
 
-    publish-to-nuget:
+  publish-to-nuget:
       needs: build
       runs-on: ubuntu-latest
       if: github.event_name == 'push'
