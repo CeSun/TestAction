@@ -10,8 +10,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        filter: tree:0
+    - name: Install .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
     - name: download llvm
       uses: wei/wget@v1
       with:
@@ -21,7 +29,7 @@ jobs:
       uses: developerdino/action-tar@v1
       with:
         args: tar -xvf  clang.tar.xz ./clang
-        
+    - name: 
     - name: download zig
       uses: wei/wget@v1
       with:
@@ -33,3 +41,28 @@ jobs:
         source: ./zig.zip
         format: zip
         dest: './zig'
+    - name: cp win-x64 bin files
+      run: |
+        mkdir -p ./src/bin/win-x64
+        cp -r ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/bin/llvm-objcopy.exe ./src/bin/win-x64/llvm-objcopy.exe
+        cp -r ./zig/* ./src/bin/win-x64
+    - name: pack nugets
+      run: dotnet build -t:Pack src/OpenHarmony.NET.PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: packages
+        path: packages
+
+    publish-to-nuget:
+      needs: build
+      runs-on: ubuntu-latest
+      if: github.event_name == 'push'
+      steps:
+        - uses: actions/download-artifact@v4
+          with:
+            name: packages
+            path: packages
+        - name: Push to NuGet
+          run: |
+            dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
