@@ -29,7 +29,6 @@ jobs:
       uses: developerdino/action-tar@v1
       with:
         args: tar -xvf  clang.tar.xz ./clang
-    - name: 
     - name: download zig
       uses: wei/wget@v1
       with:
