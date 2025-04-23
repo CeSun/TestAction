@@ -65,7 +65,7 @@ jobs:
         rm -rf ./src/bin/win-x64/lib/fuzzer
         rm -rf ./src/bin/win-x64/lib/docs
         rm -rf ./src/bin/win-x64/lib/doc
-    - name: upx exe ./src/bin/win-x64/zig.exe
+    - name: upx --best ./src/bin/win-x64/zig.exe
       run: upx --best
     - name: pack nugets
       run: dotnet build -t:Pack src/PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
