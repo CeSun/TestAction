@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.Build.NoTargets">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>OpenHarmony.NET.PublishAotCross.Compiler</PackageId>
+    <PackageId>PublishAotCross.Compiler</PackageId>
     <Version>1.0</Version>
     <Authors>OpenHarmony.NET</Authors>
     <Company>OpenHarmony.NET</Company>

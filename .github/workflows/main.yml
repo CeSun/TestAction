@@ -47,7 +47,7 @@ jobs:
         cp -r ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/bin/llvm-objcopy.exe ./src/bin/win-x64/llvm-objcopy.exe
         cp -r ./zig/* ./src/bin/win-x64
     - name: pack nugets
-      run: dotnet build -t:Pack src/OpenHarmony.NET.PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
+      run: dotnet build -t:Pack src/PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
