@@ -15,6 +15,9 @@ jobs:
       with:
         fetch-depth: 0
         filter: tree:0
+    - name: Install upx
+      run: sudo apt-get update && sudo apt-get install upx -y
+      
     - name: Install .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -62,7 +65,8 @@ jobs:
         rm -rf ./src/bin/win-x64/lib/fuzzer
         rm -rf ./src/bin/win-x64/lib/docs
         rm -rf ./src/bin/win-x64/lib/doc
-        
+    - name: upx exe ./src/bin/win-x64/zig.exe
+      run: upx --best
     - name: pack nugets
       run: dotnet build -t:Pack src/PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
     - name: Upload a Build Artifact
