@@ -43,24 +43,26 @@ jobs:
         dest: './zig'
     - name: delete files
       run: |
-        rm -rf ./zig/lib/tsan
-        rm -rf ./zig/lib/libcxxabi
-        rm -rf ./zig/lib/libcxx
-        rm -rf ./zig/lib/libc/darwin
-        rm -rf ./zig/lib/libc/glibc
-        rm -rf ./zig/lib/libc/include
-        rm -rf ./zig/lib/libc/mingw
-        rm -rf ./zig/lib/libc/wasi
-        rm -rf ./zig/lib/libc/include
-        rm -rf ./zig/lib/wasi
-        rm -rf ./zig/lib/fuzzer
-        rm -rf ./zig/lib/docs
-        rm -rf ./zig/lib/doc
+        
     - name: cp win-x64 bin files
       run: |
         mkdir -p ./src/bin/win-x64
         cp -r ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/bin/llvm-objcopy.exe ./src/bin/win-x64/llvm-objcopy.exe
-        cp -r ./zig/* ./src/bin/win-x64
+        cp -r ./zig/clang+llvm-20.1.0-x86_64-pc-windows-msvc/* ./src/bin/win-x64
+        rm -rf ./src/bin/win-x64/lib/tsan
+        rm -rf ./src/bin/win-x64/lib/libcxxabi
+        rm -rf ./src/bin/win-x64/lib/libcxx
+        rm -rf ./src/bin/win-x64/lib/libc/darwin
+        rm -rf ./src/bin/win-x64/lib/libc/glibc
+        rm -rf ./src/bin/win-x64/lib/libc/include
+        rm -rf ./src/bin/win-x64/lib/libc/mingw
+        rm -rf ./src/bin/win-x64/lib/libc/wasi
+        rm -rf ./src/bin/win-x64/lib/libc/include
+        rm -rf ./src/bin/win-x64/lib/wasi
+        rm -rf ./src/bin/win-x64/lib/fuzzer
+        rm -rf ./src/bin/win-x64/lib/docs
+        rm -rf ./src/bin/win-x64/lib/doc
+        
     - name: pack nugets
       run: dotnet build -t:Pack src/PublishAotCross.Compiler.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}}
     - name: Upload a Build Artifact
