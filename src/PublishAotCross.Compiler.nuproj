@@ -7,16 +7,13 @@
     <Company>OpenHarmony.NET</Company>
     <Description>MSBuild targets to aid in crosscompiling Native AOT publishing.</Description>
     <PackageProjectUrl>https://github.com/OpenHarmony.NET/PublishAotCross.Compiler</PackageProjectUrl>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-   <PackageCompressionLevel>maximum</PackageCompressionLevel>
-
   </PropertyGroup>
 
   <ItemGroup>
     <!-- 包含 bin 目录下的所有文件并保留目录结构 -->
     <None Include="bin\**\*">
       <Pack>true</Pack>
-      <PackagePath>bin\%(RecursiveDir)</PackagePath>
+      <PackagePath>build/bin/%(RecursiveDir)</PackagePath>
     </None>
     
 		<None Include="PublishAotCross.Compiler.targets">
