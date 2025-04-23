@@ -11,9 +11,9 @@
 
   <ItemGroup>
     <!-- 包含 bin 目录下的所有文件并保留目录结构 -->
-    <None Include="bin\**\*">
+    <None Include="bin/win-x64/**/*">
       <Pack>true</Pack>
-      <PackagePath>build/bin/%(RecursiveDir)</PackagePath>
+      <PackagePath>build/bin/win-x64/%(RecursiveDir)</PackagePath>
     </None>
     
 		<None Include="PublishAotCross.Compiler.targets">

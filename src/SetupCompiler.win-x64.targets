@@ -4,7 +4,7 @@
 		<DisableUnsupportedError>true</DisableUnsupportedError>
 	</PropertyGroup>
 
-	<UsingTask TaskName="PrependPath"
+	<UsingTask TaskName="SetUpZigPath"
 			   TaskFactory="RoslynCodeTaskFactory"
 			   AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
 
@@ -24,8 +24,7 @@
 
 	</UsingTask>
 
-	<Target Name="SetPathToClang" BeforeTargets="SetupOSSpecificProps">
-		
+	<Target Name="SetUpZigPath" BeforeTargets="SetupOSSpecificProps">
 		<PrependPath Value="$(MSBuildThisFileDirectory)/bin/win-x64" />
 
 	</Target>
