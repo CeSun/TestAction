@@ -12,7 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: wget
+    - name: download llvm
       uses: wei/wget@v1
       with:
-        args: https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/clang+llvm-20.1.0-x86_64-pc-windows-msvc.tar.xz
+        args: -O clang.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/clang+llvm-20.1.0-x86_64-pc-windows-msvc.tar.xz
+
+        
+    - name: download zig
+      uses: wei/wget@v1
+      with:
+        args: -O zig.zip https://ziglang.org/builds/zig-windows-x86_64-0.15.0-dev.379+ffd85ffcd.zip
