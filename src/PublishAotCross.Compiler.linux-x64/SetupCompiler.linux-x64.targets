@@ -24,8 +24,8 @@
 
 	</UsingTask>
 
-	<Target Name="SetUpZigPath" BeforeTargets="SetupOSSpecificProps">
-		<PrependPath Value="$(MSBuildThisFileDirectory)/bin" />
+	<Target Name="SetPathToZig" BeforeTargets="SetupOSSpecificProps">
+		<SetUpZigPath Value="$(MSBuildThisFileDirectory)/bin" />
 
 	</Target>
 	
