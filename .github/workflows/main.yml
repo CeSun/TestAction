@@ -53,19 +53,16 @@ jobs:
         mkdir -p ./src/PublishAotCross.Compiler.win-x64/bin
         cp -r ./clang+llvm-20.1.0-x86_64-pc-windows-msvc/bin/llvm-objcopy.exe ./src/PublishAotCross.Compiler.win-x64/bin/llvm-objcopy.exe
         cp -r ./zig/zig-windows-x86_64-0.15.0-dev.379+ffd85ffcd/* ./src/PublishAotCross.Compiler.win-x64/bin
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/doc
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/mingw
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/wasi
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/glibc
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/darwin
         rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/tsan
         rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libcxxabi
         rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libcxx
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/darwin
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/glibc
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/include
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/mingw
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/wasi
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/include
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/wasi
         rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/fuzzer
         rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/docs
-        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/doc
       
     # 压缩upx
     - name: upx exe
@@ -92,19 +89,16 @@ jobs:
       run: |
         mkdir -p ./src/PublishAotCross.Compiler.linux-x64/bin
         cp -r ./zig-linux-x86_64-0.15.0-dev.386+2e35fdd03/* ./src/PublishAotCross.Compiler.linux-x64/bin
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/tsan
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libcxxabi
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libcxx
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/darwin
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/glibc
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/include
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/mingw
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/wasi
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/include
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/wasi
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/fuzzer
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/docs
-        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/doc
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/doc
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/mingw
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/wasi
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/glibc
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libc/darwin
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/tsan
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libcxxabi
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/libcxx
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/fuzzer
+        rm -rf ./src/PublishAotCross.Compiler.win-x64/bin/lib/docs
     # 压缩upx
     - name: upx exe
       run: upx -9 ./src/PublishAotCross.Compiler.linux-x64/bin/zig
