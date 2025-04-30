@@ -80,6 +80,52 @@ jobs:
         name: packages
         path: packages
 
+ # 下载Linux平台zig
+    - name: download zig
+      uses: wei/wget@v1
+      with:
+        args: -O zig.zip https://ziglang.org/builds/zig-linux-x86_64-0.15.0-dev.386+2e35fdd03.tar.xz
+
+    # 解压zig
+    - name: unzip zig
+      uses: somaz94/compress-decompress@v1
+      with:
+        command: decompress
+        source: ./zig.zip
+        format: zip
+        dest: './zig'
+
+ # 复制文件到指定目录
+    - name: cp linux-x64 bin files
+      run: |
+        mkdir -p ./src/PublishAotCross.Compiler.linux-x64/bin
+        cp -r ./zig/zig-linux-x86_64-0.15.0-dev.386+2e35fdd03/* ./src/PublishAotCross.Compiler.linux-x64/bin
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/tsan
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libcxxabi
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libcxx
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/darwin
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/glibc
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/include
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/mingw
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/wasi
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/libc/include
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/wasi
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/fuzzer
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/docs
+        rm -rf ./src/PublishAotCross.Compiler.linux-x64/bin/lib/doc
+ # 压缩upx
+    - name: upx exe
+      run: upx -9 ./src/PublishAotCross.Compiler.linux-x64/bin/zig
+
+  # 打nuget包
+    - name: pack nugets
+      run: dotnet build -t:Pack src/PublishAotCross.Compiler.linux-x64/PublishAotCross.Compiler.linux-x64.nuproj -o ./packages -p:Version=0.0.0-alpha.${{github.run_number}} --property PackageCompressionLevel=Optimal
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: packages
+        path: packages    
+
 # 发布nuget
   publish-to-nuget:
       needs: build
