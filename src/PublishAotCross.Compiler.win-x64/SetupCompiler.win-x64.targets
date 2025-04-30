@@ -1,0 +1,32 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<DisableUnsupportedError>true</DisableUnsupportedError>
+	</PropertyGroup>
+
+	<UsingTask TaskName="SetUpZigPath"
+			   TaskFactory="RoslynCodeTaskFactory"
+			   AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+
+		<ParameterGroup>
+			<Value ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+
+		<Task>
+			<Using Namespace="System" />
+			<Using Namespace="System.IO" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+          Environment.SetEnvironmentVariable("PATH", Value + Path.PathSeparator + Environment.GetEnvironmentVariable("PATH"));
+        ]]>
+			</Code>
+		</Task>
+
+	</UsingTask>
+
+	<Target Name="SetUpZigPath" BeforeTargets="SetupOSSpecificProps">
+		<PrependPath Value="$(MSBuildThisFileDirectory)/bin" />
+
+	</Target>
+	
+</Project>

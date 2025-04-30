@@ -25,7 +25,7 @@
 	</UsingTask>
 
 	<Target Name="SetUpZigPath" BeforeTargets="SetupOSSpecificProps">
-		<PrependPath Value="$(MSBuildThisFileDirectory)/bin/win-x64" />
+		<PrependPath Value="$(MSBuildThisFileDirectory)/bin" />
 
 	</Target>
 	

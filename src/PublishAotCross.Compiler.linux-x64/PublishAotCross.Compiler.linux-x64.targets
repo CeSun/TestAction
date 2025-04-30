@@ -1,0 +1,6 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Only Windows host targeting Linux is currently supported -->
+  <Import Project="SetupCompiler.linux-x64.targets" Condition="$(RuntimeIdentifier.Contains('linux')) and $([MSBuild]::IsOSPlatform('Linux'))" />
+
+</Project>

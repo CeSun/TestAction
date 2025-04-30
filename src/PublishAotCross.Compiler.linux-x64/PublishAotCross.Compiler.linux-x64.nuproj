@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>PublishAotCross.Compiler.linux-x64</PackageId>
+    <Version>1.0</Version>
+    <Authors>OpenHarmony.NET</Authors>
+    <Company>OpenHarmony.NET</Company>
+    <Description>MSBuild targets to aid in crosscompiling Native AOT publishing.</Description>
+    <PackageProjectUrl>https://github.com/OpenHarmony.NET/PublishAotCross.Compiler</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 包含 bin 目录下的所有文件并保留目录结构 -->
+    <None Include="bin/**/*">
+      <Pack>true</Pack>
+      <PackagePath>build/bin</PackagePath>
+    </None>
+    
+		<None Include="PublishAotCross.Compiler.linux-x64.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</None>
+		<None Include="SetupCompiler.linux-x64.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</None>
+  </ItemGroup>
+</Project>
