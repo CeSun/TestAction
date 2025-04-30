@@ -84,7 +84,7 @@ jobs:
     - name: download zig
       uses: wei/wget@v1
       with:
-        args: -O https://ziglang.org/builds/zig-linux-x86_64-0.15.0-dev.386+2e35fdd03.tar.xz
+        args: https://ziglang.org/builds/zig-linux-x86_64-0.15.0-dev.386+2e35fdd03.tar.xz
 
     # 解压zig
     - name: unzip llvm
